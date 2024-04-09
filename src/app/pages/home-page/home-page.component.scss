@@ -1,0 +1,57 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.slider-container {
+  position: relative;
+}
+
+.slide {
+  display: none;
+}
+
+.slide.active {
+  display: block;
+}
+
+#atouts{
+  padding-left: 8rem;
+  padding-right: 8rem;
+}
+
+#services p, #atouts p{
+  font-size: 28px;
+  text-align: center;
+  line-height: 3rem;
+}
+
+h2{
+  font-size: 40px;
+  font-weight: bold;
+  color: #3f51b5;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+h3{
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.toolbar{
+  position: fixed;
+  z-index: 1000;
+}
+
+//button {
+//  position: absolute;
+//  top: 50%;
+//  transform: translateY(-50%);
+//}
+
+button:first-child {
+  left: 0;
+}
+
+button:last-child {
+  right: 0;
+}
+

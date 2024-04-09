@@ -1,0 +1,15 @@
+.container{
+  background-color: #3f51b5;
+}
+
+@media only screen and (max-width: 600px) {
+  /* Styles spécifiques pour les petits écrans */
+
+  h2 img{
+    height: 100px;
+    width: 100px;
+  }
+  .mat-card{
+    width: 100% !important;
+  }
+}

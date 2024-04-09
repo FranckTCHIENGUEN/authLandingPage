@@ -1,0 +1,97 @@
+<app-app-loader></app-app-loader>
+<div class="h-100 w-100 p-5 row d-flex justify-content-center align-items-center grid">
+  <!--  <mat-grid-list class="h-100 w-100 row">-->
+  <!--    <mat-grid-tile>-->
+
+  <mat-card class=" mat-card w-50 ">
+        <mat-card-title-group class="text-center d-flex justify-content-center">
+          <mat-card-title>
+            <h2 class="mt-5 text-center" style="font-size: x-large">
+              <img height="180" width="180" src="assets/image/Fichier%205@0.5x-100.jpg">
+            </h2>
+          </mat-card-title>
+        </mat-card-title-group>
+        <mat-card-subtitle>
+          <h4 class=" p-3 text-lg-center" style="font-size: large">
+            Save the new password
+          </h4>
+        </mat-card-subtitle>
+        <mat-card-content>
+          <form [formGroup]="registerForm" #form (ngSubmit)="formSubmit()">
+
+            @if (error){
+              <ng-container>
+                <div class="row align-items-center errorForm">
+                  <div class="col errorMessage">
+                    An error occurd please try again
+                  </div>
+                </div>
+              </ng-container>
+            }
+
+
+            <div class="row align-items-center">
+
+
+              <div class="col">
+                <mat-form-field class="d-flex justify-content-center" appearance="outline">
+                  <mat-label> New password</mat-label>
+                  <input matInput #pass [type]="hide2 ? 'password' : 'text'"
+                         formControlName="password"
+                         [errorStateMatcher]="matcher"
+                         (blur)="updateErrorMessage()" required>
+                  <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'"
+                          [attr.aria-pressed]="hide2">
+                    <mat-icon class="mat-icon">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                  @if (registerForm.controls.password.invalid) {
+                    <mat-error>
+                      {{errorMessageRequired}}
+                      {{errorMessagePass}}
+                    </mat-error>
+                  }
+                </mat-form-field>
+              </div>
+
+              <div class="col">
+                <mat-form-field class="d-flex justify-content-center" appearance="outline">
+                  <mat-label>Confirm password</mat-label>
+                  <input matInput #pass [type]="hide3 ? 'password' : 'text'"
+                         formControlName="confirmPassword"
+                         [errorStateMatcher]="matcher">
+                  <button mat-icon-button matSuffix (click)="hide3 = !hide3" [attr.aria-label]="'Hide password'"
+                          [attr.aria-pressed]="hide3">
+                    <mat-icon class="mat-icon">{{hide3 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                  @if (dis) {
+                    <mat-error>{{errorMessagePass}}</mat-error>
+                  }
+                </mat-form-field>
+              </div>
+            </div>
+          </form>
+        </mat-card-content>
+
+        <mat-card-footer class="row d-flex justify-content-center">
+          @if (error){
+            <p class="col w-100 mt-3 text-center" style="color: red">
+              {{message}}
+            </p>
+          }
+          <div class="w-100 mb-5 row">
+            <button class="col ms-2 w-50" mat-raised-button color="accent" (click)="back()">
+              <mat-icon>
+                <span class="material-symbols-outlined">
+                  arrow_back
+                </span>
+              </mat-icon> Back
+            </button>
+            <p class="col"></p>
+            <button [disabled]="registerForm.invalid" class="col me-2" mat-raised-button color="primary" (click)="formSubmit()">Save</button>
+          </div>
+
+        </mat-card-footer>
+      </mat-card>
+<!--    </mat-grid-tile>-->
+<!--  </mat-grid-list>-->
+</div>

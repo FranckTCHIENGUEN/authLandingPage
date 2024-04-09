@@ -1,0 +1,54 @@
+
+<!--<div class="slides">-->
+<!--  <div-->
+<!--    class="slide d-flex justify-content-center flex-column align-items-center"-->
+<!--    [ngStyle]="{-->
+<!--      'background-image': 'url(' + slides[currentSlide].url + ')',-->
+<!--      opacity: hidden ? 0 : 1,-->
+<!--      transition: 'opacity' + animationSpeed + 'ms ease-in-out'-->
+<!--    }">-->
+
+<!--    <h1 class="row text-center">{{ slides[currentSlide].title }}</h1>-->
+<!--    <p class="row text-center">{{ slides[currentSlide].description }}</p>-->
+<!--&lt;!&ndash;    <a href="{{ slides[currentSlide].link }}" mat-button class="row btn-out">{{ slides[currentSlide].linkContent }}</a>&ndash;&gt;-->
+<!--  </div>-->
+
+<!--  @if (indicatorsVisible) {-->
+<!--    <div id="indicators">-->
+<!--      @for(slide of slides; track $index; ){-->
+<!--        <div-->
+<!--          (click)="jumpToSlide($index)"-->
+<!--          class="indicator"-->
+<!--          [ngClass]="{ active: $index == currentSlide }"-->
+<!--        ></div>-->
+<!--      }-->
+<!--    </div>-->
+<!--  }-->
+
+<!--  <button (click)="next()" class="nextButton">-->
+<!--    <fa-icon [icon]="faArrowRight"></fa-icon>-->
+<!--  </button>-->
+<!--  <button (click)="previous()" class="previousButton">-->
+<!--    <fa-icon [icon]="faArrowLeft"></fa-icon>-->
+<!--  </button>-->
+<!--</div>-->
+
+<div class="slider">
+  <div
+    *ngFor="let slide of slides; let i = index"
+    class="slide"
+    [style.background-image]="activeSlideIndex === i ? 'url(' +slide.backgroundExpanded +')' : 'url(' +slide.backgroundCollapsed+ ')'"
+    [ngClass]="{'active' : activeSlideIndex === i}"
+    (click)="activeSlideIndex = i"
+  >
+    <div class="content-wrapper">
+      <div class="content" [style.color]="slide.textColor">
+        <img *ngIf="slide.logo" [src]="slide.logo" [alt]="slide.title" class="logo" />
+        <h2 *ngIf="slide.title"  class="title">{{ slide.title }}</h2>
+        <p *ngIf="slide.description" class="description">{{ slide.description }}</p>
+        <a *ngIf="slide.ctaText && slide.ctaLink" [href]="slide.ctaLink" class="cta">{{ slide.ctaText }}</a>
+        <div class="overlay"></div>
+      </div>
+    </div>
+  </div>
+</div>

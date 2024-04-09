@@ -1,0 +1,56 @@
+<app-app-loader></app-app-loader>
+<div class="h-100 w-100 p-5 row d-flex justify-content-center align-items-center grid">
+  <!--  <mat-grid-list class="h-100 w-100 row">-->
+  <!--    <mat-grid-tile>-->
+
+  <mat-card class=" mat-card w-50 ">
+        <mat-card-title-group class="text-center d-flex justify-content-center">
+          <mat-card-title>
+            <h2 class="mt-5 text-center" style="font-size: x-large">
+              <img height="180" width="180" src="assets/image/Fichier%205@0.5x-100.jpg">
+            </h2>
+          </mat-card-title>
+        </mat-card-title-group>
+        <mat-card-subtitle>
+          <h4 class=" p-3 text-lg-center" style="font-size: large">
+            The verification code was send to your phone number
+          </h4>
+        </mat-card-subtitle>
+        <mat-card-content>
+          <form class="w-100" [formGroup]="verifyForm">
+            <mat-form-field>
+              <mat-label>OTP</mat-label>
+              <input matInput
+                     placeholder="pat@example.com"
+                     formControlName="otp"
+                     (blur)="updateErrorMessage()"
+                     required>
+              @if (verifyForm.controls.otp.invalid) {
+                <mat-error>{{errorMessageRequired}}</mat-error>
+              }
+            </mat-form-field>
+          </form>
+        </mat-card-content>
+
+        <mat-card-footer class="row d-flex justify-content-center">
+          <p class="col w-100 mt-3 text-center" style="color: red">
+            {{message}}
+          </p>
+          <button class="row" mat-button color="primary" (click)="resendSubmit()">Resend Code</button>
+          <div class="w-100 mb-5 row">
+            <button class="col ms-2 w-50" mat-raised-button color="accent" (click)="back()">
+              <mat-icon>
+                <span class="material-symbols-outlined">
+                  arrow_back
+                </span>
+              </mat-icon> Back
+            </button>
+            <p class="col"></p>
+            <button [disabled]="verifyForm.invalid" class="col me-2" mat-raised-button color="primary" (click)="formSubmit()">Verify</button>
+          </div>
+
+        </mat-card-footer>
+      </mat-card>
+<!--    </mat-grid-tile>-->
+<!--  </mat-grid-list>-->
+</div>

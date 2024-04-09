@@ -1,0 +1,213 @@
+<app-app-loader></app-app-loader>
+
+<div class=" h-100 w-100 p-5 row d-flex justify-content-center align-items-center grid">
+<!--  <mat-grid-list class="h-100 w-100 " cols="1" rowHeight="2:1">-->
+<!--    <mat-grid-tile>-->
+      <mat-card class=" mat-card w-50">
+        <mat-card-title-group class=" text-center d-flex justify-content-center">
+          <mat-card-title>
+            <h2 class="mt-2 text-center" >
+              <img height="150" width="150" src="assets/image/Fichier%205@0.5x-100.jpg">
+            </h2>
+          </mat-card-title>
+          <mat-card-title>
+            <h3 class="text-center">
+              <strong style="color: #3f51b5; font-size: xx-large ">Register</strong>
+            </h3>
+          </mat-card-title>
+        </mat-card-title-group>
+        <mat-card-subtitle>
+          <h4 class="text-center" style="font-size: x-large">
+           Create your account
+          </h4>
+        </mat-card-subtitle>
+        <mat-card-content>
+          <form class="h-100 row" [formGroup]="registerForm">
+            <div class="row xs">
+              <mat-form-field class="col" appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input matInput
+                       placeholder="Luc"
+                       formControlName="firstName"
+                       (blur)="updateErrorMessage()"
+                       required >
+                @if (registerForm.controls.firstName.invalid) {
+                    <mat-error class="mb-2">{{errorMessageRequired}}</mat-error>
+                }
+              </mat-form-field>
+              <mat-form-field class="col" appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input matInput
+                       placeholder="MacDonald"
+                       formControlName="lastName"
+                       (blur)="updateErrorMessage()"
+                       required >
+                @if (registerForm.controls.lastName.invalid) {
+                  <mat-error class="mb-2">{{errorMessageRequired}}</mat-error>
+                }
+              </mat-form-field>
+            </div>
+
+            <div class="row xs">
+              <mat-form-field class="col" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput
+                       placeholder="pat@example.com"
+                       formControlName="mail"
+                       (blur)="updateErrorMessage()"
+                       required >
+                @if (registerForm.controls.mail.invalid) {
+                  <!--                <ng-container>-->
+                  <mat-error class="mb-2">
+                    {{errorMessageRequired}}
+                    {{errorMessageEmail}}
+                  </mat-error>
+                  <!--                  <mat-error>{{errorMessageEmail}}</mat-error>-->
+                    <!--                </ng-container>-->
+                }
+
+              </mat-form-field>
+
+<!--              <div class="col time-picker-component">-->
+<!--                <div>-->
+<!--                  <mat-form-field class="select" appearance="outline">-->
+<!--                    <mat-select formControlName="region">-->
+<!--                      <mat-select-trigger>-->
+<!--                        ({{countries.at(0)?.calling_code}})-->
+<!--                      </mat-select-trigger>-->
+<!--                      @for (country of countries; track $index){-->
+<!--                        <mat-option value="{{country.calling_code}}">-->
+<!--                          <img height="25px" width="25px" src="{{country.flag}}"> {{country.name}} ({{country.calling_code}})-->
+<!--                        </mat-option>-->
+<!--                      }-->
+<!--                    </mat-select>-->
+
+<!--                    @if (registerForm.controls.region.invalid) {-->
+<!--                      &lt;!&ndash;                <ng-container>&ndash;&gt;-->
+<!--                      <mat-error class="mb-2">-->
+<!--                        {{errorMessageRequired}}-->
+<!--                        {{errorMessageEmail}}-->
+<!--                      </mat-error>-->
+<!--                      &lt;!&ndash;                  <mat-error>{{errorMessageEmail}}</mat-error>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                </ng-container>&ndash;&gt;-->
+<!--                    }-->
+
+<!--                  </mat-form-field>-->
+<!--                </div>-->
+
+<!--                <div class="time-picker-component">-->
+                  <mat-form-field class="col" appearance="outline">
+                    <mat-label class="ms-5">Phone number</mat-label>
+<!--                    <mat-select matTextPrefix formControlName="region">-->
+<!--                      <mat-select-trigger>-->
+<!--                        ({{countries.at(0)?.calling_code}})-->
+<!--                      </mat-select-trigger>-->
+<!--                      @for (country of countries; track $index){-->
+<!--                        <mat-option value="{{country.calling_code}}">-->
+<!--                          <img height="25px" width="25px" src="{{country.flag}}"> {{country.name}} ({{country.calling_code}})-->
+<!--                        </mat-option>-->
+<!--                      }-->
+<!--                    </mat-select>-->
+                        <input matInput type="tel"
+                               formControlName="phone"
+                               (blur)="updateErrorMessage()"
+                               required >
+
+                    <button matIconPrefix [matMenuTriggerFor]="menu" mat-button [matTooltip]="region.name">
+                      <img height="25px" width="25px" src="{{region.flag}}"> ({{region.calling_code}})
+                    </button>
+                    @if (registerForm.controls.phone.invalid) {
+                      <!--                <ng-container>-->
+                      <mat-error class="mb-2">
+                        {{errorMessageRequired}}
+                        {{errorMessageEmail}}
+                      </mat-error>
+                      <!--                  <mat-error>{{errorMessageEmail}}</mat-error>-->
+                        <!--                </ng-container>-->
+                    }
+
+                  </mat-form-field>
+
+              <mat-menu #menu="matMenu">
+
+                  @for (country of countries; track $index){
+                    <button mat-menu-item (click)="regionChange(country)">
+                      <img height="25px" width="25px" src="{{country.flag}}"> {{country.name}} ({{country.calling_code}})
+                    </button>
+<!--                    <mat-option value="{{country.calling_code}}">-->
+<!--                      <img height="25px" width="25px" src="{{country.flag}}"> {{country.name}} ({{country.calling_code}})-->
+<!--                    </mat-option>-->
+                  }
+              </mat-menu>
+<!--                </div>-->
+<!--              </div>-->
+            </div>
+
+            @defer (when !otpMode){
+              <form class="row xs" [formGroup]="passForm">
+
+                <mat-form-field class="col" appearance="outline">
+                  <mat-label>Password</mat-label>
+                  <input matInput [type]="hide? 'password' : 'text'"
+                         formControlName="password"
+                         [errorStateMatcher]="matcher">
+                  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                          [attr.aria-pressed]="hide">
+                    <mat-icon class="mat-icon">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                  @if (passForm.controls.password.invalid) {
+                    <!--                  <ng-container>-->
+                    <mat-error class="mb-2">{{errorMessagePass}}
+                      {{errorMessageRequired}}
+
+                    </mat-error>
+                    <!--                    <mat-error></mat-error>-->
+                      <!--                  </ng-container>-->
+                  }
+                </mat-form-field>
+                <!--                <p><mat-checkbox formControlName="hide">Display password</mat-checkbox></p>-->
+
+                <mat-form-field class="col" appearance="outline">
+                  <mat-label>Confirm password</mat-label>
+                  <input matInput [type]="hide ? 'password' : 'text'"
+                         formControlName="confirmPassword"
+                         [errorStateMatcher]="matcher">
+                  @if (dis) {
+                    <ng-container>
+                      <mat-error class="mb-2">{{errorMessagePass}}</mat-error>
+                    </ng-container>
+                  }
+                </mat-form-field>
+              </form>
+            }
+
+
+          </form>
+        </mat-card-content>
+
+        <mat-card-footer class="d-flex flex-column justify-content-center">
+          <div class="mt-3 text-center" style="color: red">
+            {{message}}
+            <p class="mt-3 text-center" style="color: red">
+              {{dataEror}}
+            </p>
+          </div>
+
+          @defer (when otpMode){
+            <button [disabled]="registerForm.invalid"  mat-raised-button color="primary" (click)="formSubmit()">Register</button>
+          }
+
+          @defer (when !otpMode){
+            <button [disabled]="registerForm.invalid || passForm.invalid"  mat-raised-button color="primary" (click)="formSubmit()">Register</button>
+          }
+
+          <p class="row mt-3">
+            <a [routerLink]="['/login']" mat-button class="btn-out text-center">Have account ? Login now</a>
+          </p>
+        </mat-card-footer>
+      </mat-card>
+<!--    </mat-grid-tile>-->
+<!--  </mat-grid-list>-->
+</div>
+
+

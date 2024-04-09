@@ -1,0 +1,23 @@
+@media only screen and (max-width: 600px) {
+  /* Styles spécifiques pour les petits écrans */
+
+  .mat-card{
+    width: 100% !important;
+  }
+
+  h2 img{
+    height: 100px;
+    width: 100px;
+  }
+
+  div .xs{
+    display: flex;
+    flex-direction: column;
+  }
+  //div .xs .col{
+  //  width: 90%;
+  //}
+  div .xs .col .ms-5{
+    margin-left: 0px !important;
+  }
+}
