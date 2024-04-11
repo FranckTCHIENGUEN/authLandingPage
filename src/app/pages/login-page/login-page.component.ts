@@ -80,7 +80,9 @@ export class LoginPageComponent{
   }
 
 
-
+  back() {
+      this.router.navigate(['welcome'])
+  }
   updateErrorMessage() {
     if (this.loginForm.controls.email.hasError('required') ||
       this.loginForm.controls.passWord.hasError('required')) {
