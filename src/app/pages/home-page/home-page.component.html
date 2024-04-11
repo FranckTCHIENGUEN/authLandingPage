@@ -8,7 +8,7 @@
     <mat-icon>person</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    @defer (when otpMode){
+    @defer (when !otpMode){
       <button mat-menu-item (click)="openDialogPass()">
         <mat-icon>lock_reset</mat-icon>
         Change password
@@ -36,7 +36,8 @@
 <!--  "-->
 <!--&gt;-->
 
-<div class="w-100 h-100" >
+
+<div  class="w-100 h-100" >
   <app-slider
     [indicatorsVisible]="true"
     [animationSpeed]="400"
@@ -47,83 +48,89 @@
 </div>
 
 <!--</div>-->
+@defer (on immediate){
+  <section class="container p-5" id="services">
 
-<section class="container p-5" id="services">
+    <h2>Our Services</h2>
 
-  <h2>Our Services</h2>
+    <div class="row featurette" id="heb-main">
+      <div class="col-md-7 f1 d-flex justify-content-center align-items-center flex-column" style="background: bisque;">
+        <h3 class="featurette-heading">Hosting and Maintenance</h3>
+        <p class="lead">Hosting and maintenance services to ensure the availability of your applications.</p>
+      </div>
+      <div class="col-md-5">
 
-  <div class="row featurette" id="heb-main">
-    <div class="col-md-7 f1 d-flex justify-content-center align-items-center flex-column" style="background: bisque;">
-      <h3 class="featurette-heading">Hosting and Maintenance</h3>
-      <p class="lead">Hosting and maintenance services to ensure the availability of your applications.</p>
+        <img src="https://www.system-net.fr/wp-content/uploads/2019/03/focus-hebergement-infrastructure-serveur-500x500.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="...">
+      </div>
     </div>
-    <div class="col-md-5">
 
-      <img src="https://www.system-net.fr/wp-content/uploads/2019/03/focus-hebergement-infrastructure-serveur-500x500.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="...">
+    <hr class="featurette-divider">
+
+    <div class="row featurette" id="dev-web">
+      <div class="col-md-7 order-md-2 f2 d-flex justify-content-center align-items-center flex-column" style="background: #8db8e2;">
+        <h3 class="featurette-heading">Web development</h3>
+        <p class="lead">We design modern and functional websites.</p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img src="https://www.mydigitalschool.com/sites/default/files/wysiwyg/Design%20sans%20titre.png"
+             class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="...">
+      </div>
     </div>
-  </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette"  id="dev-mob">
+      <div class="col-md-7 f3 d-flex justify-content-center align-items-center flex-column" style="background: #ec9696; color: white">
+        <h3 class="featurette-heading">Mobile Development</h3>
+        <p class="lead"> Creation of tailor-made mobile applications for your needs.</p>
+      </div>
+      <div class="col-md-5" >
+        <img src="https://kreol-cloud.fr/wp-content/uploads/elementor/thumbs/application_sur_mesure_accueil-q0qvstev904ad0bf4g58hwzd5ajjxagyjuz8jfj4i0.png"
+             class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="...">
+      </div>
+    </div>
+  </section>
 
   <hr class="featurette-divider">
 
-  <div class="row featurette" id="dev-web">
-    <div class="col-md-7 order-md-2 f2 d-flex justify-content-center align-items-center flex-column" style="background: #8db8e2;">
-      <h3 class="featurette-heading">Web development</h3>
-      <p class="lead">We design modern and functional websites.</p>
+  <section id="atouts">
+    <h2>Our Strengths</h2>
+    <div class="row">
+      <div class="col-lg-4 d-flex justify-content-center align-items-center flex-column">
+
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="https://c8.alamy.com/compfr/gn1e29/integration-de-l-icone-de-l-innovation-modele-plat-gn1e29.jpg"
+             role="img">
+
+        <h3>Innovation</h3>
+        <p>We remain at the forefront of technology to offer you innovative solutions.</p>
+
+      </div><!-- /.col-lg-4 -->
+
+      <div class="col-lg-4 d-flex justify-content-center align-items-center flex-column">
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="https://img.freepik.com/vecteurs-premium/croissance-equipe-icone-vecteur-developpement-signe-symbole-popularite-croissance-carriere-icone-entreprise-succes-carriere-fleches-vers-haut-indicateur-performance-performance-employes_775815-669.jpg"
+             role="img">
+
+        <h3>Expert Team</h3>
+        <p>Our team is made up of experts who are passionate about their work.</p>
+
+      </div><!-- /.col-lg-4 -->
+
+      <div class="col-lg-4 d-flex justify-content-center align-items-center flex-column">
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="data:image/jpeg;base64,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"
+             role="img" >
+
+        <h3>Customer satisfaction</h3>
+        <p>We are committed to ensuring your satisfaction at every stage of your project.</p>
+
+      </div>
     </div>
-    <div class="col-md-5 order-md-1">
-      <img src="https://www.mydigitalschool.com/sites/default/files/wysiwyg/Design%20sans%20titre.png"
-           class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="...">
-    </div>
+
+
+    <hr class="featurette-divider">
+  </section>
+} @loading (){
+  <div class="row w-100 text-center">
+    Loading...
   </div>
+}
 
-  <hr class="featurette-divider">
-
-  <div class="row featurette"  id="dev-mob">
-    <div class="col-md-7 f3 d-flex justify-content-center align-items-center flex-column" style="background: #ec9696; color: white">
-      <h3 class="featurette-heading">Mobile Development</h3>
-      <p class="lead"> Creation of tailor-made mobile applications for your needs.</p>
-    </div>
-    <div class="col-md-5" >
-      <img src="https://kreol-cloud.fr/wp-content/uploads/elementor/thumbs/application_sur_mesure_accueil-q0qvstev904ad0bf4g58hwzd5ajjxagyjuz8jfj4i0.png"
-           class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="...">
-    </div>
-  </div>
-</section>
-
-<hr class="featurette-divider">
-
-<section id="atouts">
-  <h2>Our Strengths</h2>
-  <div class="row">
-    <div class="col-lg-4 d-flex justify-content-center align-items-center flex-column">
-
-      <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="https://c8.alamy.com/compfr/gn1e29/integration-de-l-icone-de-l-innovation-modele-plat-gn1e29.jpg"
-           role="img">
-
-      <h3>Innovation</h3>
-      <p>We remain at the forefront of technology to offer you innovative solutions.</p>
-
-    </div><!-- /.col-lg-4 -->
-
-    <div class="col-lg-4 d-flex justify-content-center align-items-center flex-column">
-      <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="https://img.freepik.com/vecteurs-premium/croissance-equipe-icone-vecteur-developpement-signe-symbole-popularite-croissance-carriere-icone-entreprise-succes-carriere-fleches-vers-haut-indicateur-performance-performance-employes_775815-669.jpg"
-           role="img">
-
-      <h3>Expert Team</h3>
-      <p>Our team is made up of experts who are passionate about their work.</p>
-
-    </div><!-- /.col-lg-4 -->
-
-    <div class="col-lg-4 d-flex justify-content-center align-items-center flex-column">
-      <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBIREhgREhIYEhISGBgYGBEYGBEYEhgVGBUZHBgVGRkcIS4lHB4rHxgcJjgmKy80NTU1GiQ7QDszPy40NTEBDAwMEA8QHxISHjQrJCs2NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NP/AABEIAOEA4QMBIgACEQEDEQH/xAAcAAEAAgMBAQEAAAAAAAAAAAAAAQcFBggEAwL/xABGEAACAgACBgMMBwQLAQEAAAAAAQIDBBEFBhIhMVEHQWETIjJCUnFygZGSodEzYnOCsbLBNDVUohQWIyRTY4OTs8LwQxX/xAAaAQEBAQEBAQEAAAAAAAAAAAAABQQDAQIG/8QAMREAAgEDAAcGBgMBAQAAAAAAAAECAwQRBRIhMTJBURNScYGRoSIzYbHB4RQV0fBD/9oADAMBAAIRAxEAPwC5gAAAAAAAAACMwCSD52WxinKUlGK4ybSS87Zq2ldfMHRnGEpXzXVBd77z3H1GEpv4Vk+J1Ix4ng23MFSaQ6RcXPNVQhSueW3Pz5vd8DXsXp7F3fSYm2SfiqUox92LSNUbCo9+EZZX1Nbk2XvbiIQ8OcY+k0vxPM9L4ZccRUv9Sv5nP7lnxbfa+JB3Wj13vY5PSD7vudA//sYX+Jp/3K/mferFVz8CyMvRlF/gc7kp9p49Hrve37H9g+77nRpJz/hdMYunLueJtgl4qnJw9x978DYNH9IWNr3WbF8frR2J+9Hd/KcpWFRbnk6Rvqb3rBcCBpei+kHCW5RtUqJPrlvh7y4es27D4iFkVOuSnF8JRaa+BknTnDiWDVCpCfCz7ghMk+ToAAAAAAAAAAAAAAAAAACMweDS2lacJW7bpqMVw5yfKK62Em3hHjaSyz2ykks28kuLfI0rWLX6mhuvDJX2Lxs8q4vzrwn2I03WXW+/GNxi3Vh+qtPKUu2bXHzcDWilQsedT0J1a95U/UyGldNYnFSzvtlNZ7oLvYLzRW72mOAKEYqKxFYRPlJyeWwAD6PkAAAAAAAAAHs0fpO7DS26LZVy+rlk+xxe5+s8YPGk959JtbUWdq90hQnlXjIquX+NHPub9KPi/FeY32q6M4qcZKUZLNSTTTXNM51zM1q/rLiMDL+zlt1t99TJvYfNx8l9q9efVPr2KfxU/T/DdRvWtk/UvQkw+gNPU42vbqlvXhVvw4Pk1+plya4tPDKakmsokAHh6AAAAAAAAACGMzH6X0nXhKZXWvKMerrlLqiubbCTbwjxtJbT4aw6dqwNTssebe6Fa8KUuS+ZTOm9M3Yyzulr9GCz2ILlH59Y07pezGXO6x9kIdUI5+Cv/bzGlm2tlSWXvI1xcOq8LcAAazKAAAAAAAAAAEiUgCAAAAAAAAAevRukbcNZG2mexOPsa64yXWi4tVdZq8dDgq7oLv68/wCaPOJSWZ6tHY6zD2xurlszg80+a64vmn1ma4t41Vnn1NNvcSpPHI6FRJhNW9OQxtCsh3slunDrjPrXmfFMzSIsouLwy1GSksokAHh6AAACCSGAfickk23klvbfBLmUxrprC8be1B/3eptQXVJ8HN9r35dhuXSPpzuNSwtcsrLk9rLjGtcfbw9TKpZSsaP/AKvyJl7W29mvMMgApE4AAAAAAAAAAAAzOq2hHj73R3TuajCU3LLN5RlGOyln9b4GZ010f4iiDspmsRGKzcEtmxLmlm1L1NPkmezonozuvs6oQhD35N/9PiWgkTLi5qU62E9iKdvbQnSy95zi/wD3MG1dIOjY4fGScIqMLkrEuC2s8pZeveaqUKc1OCkuZgqQcJOL5AAH2cwAAASiAAZjVvTc8FiI2xzcJd7OHlR+a6i8MLiYW1xshLahZFSjJcmuJzuWL0Zad3vBTfHOVTftlD9fbyMF7R1l2i38zfZVtV6j3ciywQmSSiqAAAD5XWKEZTk8oxTbfJJZtn0NQ6RtJdxwbri+/vkoLns8ZP4H1CGvJR6nxUnqRcuhWGnNJSxWJniJeNLvV5MI7oxXqXtzMcAfoYpRSiuRAlJyeWAAenyAAAAAAAAACSDZNVNVrcdJTacMPF99Z5WT3xhz61n1HxOcYLWkz7hBzeI7zeejLAOrBuySylfNzXoJKMfwb9ZuSPjh6Y1wjCK2YwSiorgktyP3OSSbbyS3kGpNzm5dS7ThqQUehV3StJPE1RT3qt5+uW40QzGtWlP6Xi53LwM9mHbCGaT9fH1mHLdvHVpJP/uZGry1qjaAAOxwAAAAAAB98Hip02RtreU65KUX2p57+zn2ZnwJPGs7D1PG06C0Xjo4imu6Hg2RUkuXNep7j2lfdFuktuqzDSe+uSnH0Z8fiiwSBVhqTcS/RnrwUgADmdCCouk7HbeLVSfe0QWfpT75/BR9pbxQGsGKduLvszz2rZ5P6kZOMP5Yo22EM1G+iMV9LFNLqzHAArkgAAAAAAAAAAEoAy2rGiv6XioUvPYb2p5eRHe/bw9ZeWHpjXBQhFRhFJKK3JJdRpPRhojudU8VJZSuezDn3OL4/elm/Mkb4iLeVNepjkizaUtSnnmyTUOkbSrw+DdcG1PEPYTXFR4za9W77xtxp2u2q92PnXKucIquMk1La4tp5rI5UdXtFrbjtX1uzajvKhYN7XRniv8AHqXqn8iH0aYpcL6n6p/Ir/yqPeJP8Wt3TRQbjf0d42Pguufmll+KNVxeFspnKuyDhZHjF8fP2o6Qqwnsi8nKdKcOJHwAB0OYAAAAABsOo2P7hjqm3lG19zl9/wAH+ZL2l3nOVdrhKM4vKUWpR9KLzXxR0RTYpxjJcJJNeZrNErSEcSUuv4KthLMXE+hJAMBuPjibNiuU/JjKXsTZzw3mX/pp/wB1v+ys/JI5+zKej90vIm6Qe2PmAAUScAAAAC19UdUsJLCQttrVtlsdpynm0s+CiupHGtWVJZZ2o0XVbSKoBen9U9H/AMJX7qNe101VwkMJO+qtVTqSknBZJraSaa9ZwjfQlJLD2neVjOKbyircjLat6FljcRGqKewsnZPlDPes+b4Hq1P1fjpCycJTlWq4xlnFJt5yyy37i2tCaFpwVSqpju4yk985S8qT6/0FzdKmnFbxbWrniT3Huw1Ma4RhBKMYJKMVwSSySPuQiSQV0CCQAQSAAfnI0vpE0LG/DPERWVtCzz8qHjRf4o3U0TpJ01KmqOGgsnentS6lCLWaXa2ztbqTqrVOFw49m9YqsAF4hAAAAAAAvjVW3bwWHl/lQXurZ/Qocu/Ub930ejL/AJJmDSC+BP6m/R/G/A2DMEAkZK2Dxab/AGW/7Kz8jOfkdE4qvbrlDyoyj7U0c75cVy+fAqaPfEvAmaQW2PmQACkTQAAAXtql+w0fZookvbVH9hw/2aMGkOBeJQsON+H5MzkYDXn93Yj0V+aJsBr+vX7uxHoL80SZT414r7lGpwPwZpvROv7e77OP5y0ireib6e77OP5y0jRe/Pfl9jhZ/JXn9wADKagAAAAACDU+kHRkLsHKyWSsoW3GX4x8z/Q2xlWdJulbXcsJvjVGEZteW23vfYsvad7aEpVVqnC5nGNN55mhgAukIAAAAAAF36i/u6j0Zf8AJIpAvfVWnYwWHj/lRfvLa/UwaQfwRX1N9hxy8DMAkEjBWIKB1gwvccXfXllsWyyX1ZScofyyRfxUfSdge54tWpZK+tP79fev4bHsN9hLFTV6mG+hmnrdPyaYACuSAAAAXtqj+w4f7NFEl7ao/sOH+zRg0hwLxKFhxvw/JmjX9ev3diPQX5omwGv68/u7EegvzxJlPjXivuUanA/Bmm9E30932cfzlpFW9E30932cfzlpGi9+e/L7HCz+SvP7gAGU1AAAAAAEMrXpWjXnS013VbSa3Z7GXF+vL2s3rTWP/o2GsvS2nXByUeb4L4lE6QxlmIsldbPbnN5t9S5RXJLqRtsqTlPX5IxXtVKGpzZ5gAVyQAAAAAAfuuuUpKEVnKbUYrnKTyivazoeipQjGC8GCSXmSyKV1HwPd8fUms41N2P7ng/zuJeBKv5Zko9PyVLCPwuXUAAwFAg1DpH0c7sHtpZyolt/d4S+DNwPldXGcZRks4yTTT4NNZNH1Tm4SUlyPipDXi49TnQGQ05o2WFxFmHl4ku9flRlvjJdmXxTMefoYtSSa57SBJYbTAAPT5BeWp1sZ4CjJp5QSfNNN7mUaevCaSvoTVV1lSfFQnOKb8yeWfaZ7mg60UkzRbVlSk20dCGua9WRjo+5NpbUUkt297S3L2FU/wBY8b/GW+/P5njxekLrsu63WWZcFOc5JdqTbyMkLCSkm5I1zvoyi0kbN0daTpw19krrI1qcIxi3nk2pZ5Z5Fp4bSVFv0d0J9kZRb9iZz62E+Ta82aO9e0VWbmmcKN26cdXB0aCgcLpnFVfR4m2CXCKnLY91vZ+Blqde9Ix43Rn6Vdf/AFSMktHz5NGmN/B700XUQVDDpGxy4xpl/pzT+Ez7x6SsV11VPzd0X6nx/CrdF6nT+bR+voWuCqJdJWK6qqk+ffv9UeHGa+4+xOKnCpPrhHKXtk5Zeo9VjWfT1DvaS6m3dIWsFddEsLFqVtqScU/Bjnvb7ewqc/cpuTcpScpSebk222+bb4s/BSoUVSjheZNr1nVllgAHc4AAAAlEH3weGnbZGqCznZOMYrtcss32LiM42s9SzsLH6LNHONdmKkt9rUI+jHi/a/gWEeDRWBjhqYURXe1xSz5vLe353mz3n5+rU7SbkXqMOzgogAHM6ggkAGi9JOge7VLFQX9pSspZcZV8X7Hv9bKpOjJwUk00mmsmnvWXaUtrnq88FfnFf2FrcoS5Pi4PtXVzWRSsa+zs35f4TL2ht7ReZrgDQKROAAAAAAAAAAAAAAAAAAAAAAAAAAACLE6M9A5t42yPDONSfb4U/wBPaajq5oWWOvjTDdBb5z6ox5+d8EXlhMNCqEa4JRhBKMYrgkuowXtbVXZre95Qs6Os9d7j0AAlFQAAAAAAhmP0zouvF0ypsWcZLc/GjLqku1GRICbTyjxpNYZQOm9E2YO502Let8Z79mceqUfl1GOL31h0FVjau5zWUo5uFi8KEua+RTOmtD3YOzuV0cvJmvAlHqlF/p1Fq2uVVjh7yPc27pvK3GOBLRBqMgAAAAAAAAAAAAAAAAAAAAAPVo7A2YiyNNUduyb3Ls6231RXWxo7R9uJsVNUHOcurqS5yfUu0uLVTVivA15vKd8/Ds+OzHlEzXFwqS+ppt7d1X9D06taBrwNCrjlKct87Mt85fouSM0hkSRXJyeWWoxUVhAAHh6AAAAAAAAAQzH6X0TTi63VdFSi+D8aL8qL6mZEgJtPKPGk1hlJ6y6pX4JuaTtoz3WLjHsmlwfbw/A1w6MnBSTTWae5p8GjSdYtQarm7MM1TPyP/m35vF9XsKVG+zsqepNr2T3w9CqQZHSmhsRhJbN9UoLPJTybrfmmt3qzzMfkUU1JZjtJ8k4vDIAB6eAAAAAAAAAAA9ej9HXYmWxRXKyX1V3q9KXBetnjaSzk9Sb2I8pmdX9XMRjpZVx2K0++uku8XYvKfYjctX+j2McrMXJTlx7jFvYXZKXjerJG/UUxhFQhFRjFZKKWSS7EYK18lsp+pvo2Te2oYzQGgacFXsVRzk8tqx+HLzvl2GYyGRJMk3J5ZTjFRWEAAeHoAAAAAAAAAAAAAAAIyJAB8baozi4yipxe5xaTTXanxNV0nqDg7s5QTom/I8HP0WbgD6hOUHmLPiVOMuJFQ4/o7xdebqlC6PLPYn7Hu+Jr2M0Li6fpMNZHLxtiUoe9HNF/g1xvqi37TLKxpvdsOb20RmdFX4auzw4Rn54xf4njeg8G97wtLfN1VfI6/wBgu77/AKOL0e+97fsoHMbS5ov5aCwf8JT/ALVXyPVTg66/o64Q9GMY/gh/Yru+/wCgtHvve37KHwmiMTdl3PD2WJ+MoT2Pea2fiZ/A9H2Ns3zUKY/WkpSX3Y7viXCiTnK/m9ySOsbCC4m2aTozo8wteUrpSvlyfew9iNtwuFrqioVwjXBcIxSS+B6QZJ1JzeZPJrhShBYiiAiQfB9gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgkBBgAAAAAAAAAAAAAAAAAAAAH/2Q=="
-           role="img" >
-
-      <h3>Customer satisfaction</h3>
-      <p>We are committed to ensuring your satisfaction at every stage of your project.</p>
-
-    </div>
-  </div>
-
-
-  <hr class="featurette-divider">
-</section>

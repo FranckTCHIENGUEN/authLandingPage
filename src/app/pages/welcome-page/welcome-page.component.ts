@@ -52,6 +52,7 @@ import {Router} from "@angular/router";
 export class WelcomePageComponent {
   favoriteSeason?: boolean;
   constructor(private appService:AppService, private router:Router) {
+    sessionStorage.clear();
   }
 
   formSubmit() {
