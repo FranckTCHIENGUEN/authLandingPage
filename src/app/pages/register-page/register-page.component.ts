@@ -18,7 +18,6 @@ import {confirmPassValidator, createPasswordStrengthValidator} from "../../../ut
 import {MatIcon} from "@angular/material/icon";
 import {Router, RouterLink} from "@angular/router";
 import {MatError} from "@angular/material/form-field";
-import {LoginFields} from "../../../auth-api/src-api/models/UserType/login-fields";
 import {UserCreateFields} from "../../../auth-api/src-api/models/UserType/user-create-fields";
 import {AuthService} from "../../../services/authService/auth.service";
 import {ConfirmDialogComponent} from "../../components/confirm-dialog/confirm-dialog.component";
@@ -101,14 +100,14 @@ export class RegisterPageComponent {
   error: boolean = false;
    message: string = "";
    dataEror: any;
-   otpMode: boolean;
+   otpMode: boolean = true;
 
   constructor(private formBuilder :FormBuilder, private authService:AuthService,
               private dialog: MatDialog,
               private otpService:OtpAuthServiceService,
               private router:Router) {
 
-    this.otpMode = sessionStorage.getItem('otpMode') as unknown as boolean;
+    this.otpMode = JSON.parse(sessionStorage.getItem('otpMode') as string )
     merge(this.registerForm.statusChanges, this.registerForm.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateErrorMessage());
@@ -212,7 +211,7 @@ export class RegisterPageComponent {
         data: {
           message: "Welcome to Digisoft " + firstName + " "+lastName,
         },
-      }).afterClosed().subscribe(value => {
+      }).afterClosed().subscribe(() => {
         this.router.navigate(["login"])
       });
 

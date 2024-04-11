@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {MyErrorStateMatcher} from "../../ErrorMatcher";
-import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {merge} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {MatGridList, MatGridTile} from "@angular/material/grid-list";
@@ -54,7 +54,7 @@ import {OtpAuthServiceService} from "../../../services/OTPServices/otp-auth-serv
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss'
 })
-export class LoginPageComponent {
+export class LoginPageComponent{
   loginForm = this.formBuilder.group({
     email:['',[Validators.required, Validators.email]],
     passWord:[''],
@@ -65,19 +65,21 @@ export class LoginPageComponent {
    errorMessageRequired: string = "";
    error: boolean = false;
     message: string = "";
-    otpMode:boolean = false;
+    otpMode:boolean = true;
 
   constructor(private formBuilder :FormBuilder,private router:Router,
               private appService:AppService,
               private  otpService:OtpAuthServiceService,
               private authService:AuthService) {
 
-    this.otpMode = sessionStorage.getItem('otpMode') as unknown as boolean
+    this.otpMode = JSON.parse(sessionStorage.getItem('otpMode') as string )
 
     merge(this.loginForm.statusChanges, this.loginForm.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateErrorMessage());
   }
+
+
 
   updateErrorMessage() {
     if (this.loginForm.controls.email.hasError('required') ||
@@ -149,5 +151,4 @@ export class LoginPageComponent {
     }
   }
 
-  protected readonly String = String;
 }

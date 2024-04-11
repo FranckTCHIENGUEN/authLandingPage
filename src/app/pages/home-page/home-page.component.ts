@@ -1,18 +1,16 @@
-import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {Component} from '@angular/core';
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {ChangePasswordDialogComponent} from "../../components/change-password-dialog/change-password-dialog.component";
 import {EditDataDialogComponent} from "../../components/edit-data-dialog/edit-data-dialog.component";
-import {MatToolbar, MatToolbarModule} from "@angular/material/toolbar";
-import {MatButton, MatButtonModule, MatFabButton, MatIconButton} from "@angular/material/button";
-import {MatIcon, MatIconModule} from "@angular/material/icon";
-import {MatMenu, MatMenuItem, MatMenuModule, MatMenuTrigger} from "@angular/material/menu";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatButton, MatButtonModule, MatFabButton} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
+import {MatMenuModule} from "@angular/material/menu";
 import {UserCreateFields} from "../../../auth-api/src-api/models/UserType/user-create-fields";
 import {AuthService} from "../../../services/authService/auth.service";
 import {Router} from "@angular/router";
 import {slideFields, SliderComponent} from "../../components/slider/slider.component";
-import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {IResponse} from "../../../auth-api/src-api/models/i-response";
 import {ConfirmDeleteDialogComponent} from "../../components/confirm-delete-dialog/confirm-delete-dialog.component";
 import {AppLoaderComponent} from "../../components/app-loader/app-loader.component";
 import {OtpAuthServiceService} from "../../../services/OTPServices/otp-auth-service.service";
@@ -68,7 +66,7 @@ export class HomePageComponent {
                private router:Router,
                private dialog: MatDialog,) {
 
-    this.otpMode = sessionStorage.getItem('otpMode') as unknown as boolean;
+    this.otpMode = JSON.parse(sessionStorage.getItem('otpMode') as string )
 
     if (sessionStorage.getItem('connectedUser')){
       let authResponse = JSON.parse(sessionStorage.getItem('connectedUser') as string) ;
@@ -118,12 +116,12 @@ export class HomePageComponent {
     }).afterClosed().subscribe(value => {
       if (value=='oui'){
         if (this.otpMode){
-          this.otpService.logout().subscribe(value1 => {
+          this.otpService.logout().subscribe(() => {
             sessionStorage.clear();
             this.router.navigate(['']);
           })
         }else {
-          this.authService.disconect().subscribe(value1 => {
+          this.authService.disconect().subscribe(() => {
             sessionStorage.clear();
             this.router.navigate(['']);
           })

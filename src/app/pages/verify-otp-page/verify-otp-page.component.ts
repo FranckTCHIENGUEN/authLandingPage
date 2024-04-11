@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatButton} from "@angular/material/button";
 import {
   MatCard,
@@ -14,7 +14,6 @@ import {MatGridList, MatGridTile} from "@angular/material/grid-list";
 import {MatInput} from "@angular/material/input";
 import {merge} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {MyErrorStateMatcher} from "../../ErrorMatcher";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../../services/authService/auth.service";
 import {VerifyOtp} from "../../../auth-api/src-api/models/UserType/verify-otp";
@@ -55,7 +54,6 @@ export class VerifyOtpPageComponent {
     otp:['',[Validators.required,]],
   });
 
-  errorMessageEmail: string = "";
   errorMessageRequired: string ="";
   error: boolean = false;
    message: string = "";
@@ -69,11 +67,9 @@ export class VerifyOtpPageComponent {
               private dialog:MatDialog,
               private _Activatedroute:ActivatedRoute) {
 
-    this.otpMode = sessionStorage.getItem('otpMode') as unknown as boolean;
+    this.otpMode = JSON.parse(sessionStorage.getItem('otpMode') as string )
     this.email = this._Activatedroute.snapshot.paramMap.get("email")!
     this.type = this._Activatedroute.snapshot.paramMap.get("type") as VerifType
-
-    console.log(this.type)
 
     merge(this.verifyForm.statusChanges, this.verifyForm.valueChanges)
       .pipe(takeUntilDestroyed())
@@ -89,7 +85,6 @@ export class VerifyOtpPageComponent {
   }
 
 
-  matcher = new MyErrorStateMatcher();
 
   back() {
 
@@ -156,13 +151,13 @@ export class VerifyOtpPageComponent {
       this.message = data.message!;
     }
   }
-  responseResend(data:any){
+  responseResend(){
     this.dialog.open(ConfirmDialogComponent, {
       disableClose:false,
       data: {
         message: "The new OTP was send to your phone number ",
       },
-    }).afterClosed().subscribe(value => {
+    }).afterClosed().subscribe(() => {
       this.error = false
       this.verifyForm.reset();
     });
@@ -176,9 +171,9 @@ export class VerifyOtpPageComponent {
       if (this.otpMode){
         this.otpService.resendOtp(resendOtp)
           .subscribe(
-            data =>{
+            () =>{
 
-              this.responseResend(data)
+              this.responseResend()
             },
             error =>{
               this.error = true
@@ -188,9 +183,9 @@ export class VerifyOtpPageComponent {
       }else {
         this.authService.resendOtp(resendOtp)
           .subscribe(
-            data =>{
+            () =>{
 
-              this.responseResend(data)
+              this.responseResend()
             },
             error =>{
               this.error = true
