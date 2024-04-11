@@ -147,6 +147,8 @@ export class EditDataDialogComponent {
         data: {
           message: "edit information successfully",
         },
+      }).afterClosed().subscribe(value => {
+        this.dialogRef.close()
       });
 
     }else{
