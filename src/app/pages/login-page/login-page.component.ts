@@ -73,7 +73,7 @@ export class LoginPageComponent{
               private authService:AuthService) {
 
     this.otpMode = JSON.parse(sessionStorage.getItem('otpMode') as string )
-
+    sessionStorage.removeItem('connectedUser')
     merge(this.loginForm.statusChanges, this.loginForm.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateErrorMessage());

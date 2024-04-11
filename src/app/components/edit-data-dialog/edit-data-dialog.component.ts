@@ -30,6 +30,8 @@ import {AppUserServiceService} from "../../../services/userService/app-user-serv
 import {ChangePasswordFields} from "../../../auth-api/src-api/models/UserType/change-password-fields";
 import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
 import {OtpAuthServiceService} from "../../../services/OTPServices/otp-auth-service.service";
+import {AuthService} from "../../../services/authService/auth.service";
+import {IResponse} from "../../../auth-api/src-api/models/i-response";
 
 @Component({
   selector: 'app-edit-data-dialog',
@@ -72,11 +74,12 @@ export class EditDataDialogComponent {
   user: UserCreateFields ={phoneNumber: "", region: "", email: "", firstName: "", password: ""};
    error: boolean = false;
    message: string = '';
-   otpMode:boolean=false;
+   otpMode:boolean=true;
   constructor(private formBuilder:FormBuilder,
               private dialog: MatDialog,
               private userService:AppUserServiceService,
               private otpService:OtpAuthServiceService,
+              private authService:AuthService,
               private dialogRef: MatDialogRef<EditDataDialogComponent>,
               @Inject(MAT_DIALOG_DATA) private data: any) {
 
@@ -86,7 +89,7 @@ export class EditDataDialogComponent {
       this.registerForm.controls.lastName.setValue( this.user!.lastName!)
     }
 
-    this.otpMode = sessionStorage.getItem('otpMode') as unknown as boolean;
+    this.otpMode = JSON.parse(sessionStorage.getItem('otpMode') as string);
 
     merge(this.registerForm.statusChanges, this.registerForm.valueChanges)
       .pipe(takeUntilDestroyed())
@@ -149,6 +152,16 @@ export class EditDataDialogComponent {
         },
       }).afterClosed().subscribe(value => {
         this.dialogRef.close()
+        let userDta = JSON.parse(sessionStorage.getItem('connectedUser') as string)
+
+        userDta.user.lastName = this.user.lastName
+        userDta.user.firstName = this.user.firstName
+
+        let user:IResponse={
+          code:0,
+          data:userDta
+        }
+        this.authService.setConnectedUser(user)
       });
 
     }else{

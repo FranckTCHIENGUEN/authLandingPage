@@ -92,7 +92,7 @@ export class HomePageComponent {
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     dialogConfig.height = '50%';
-    dialogConfig.width = '50%';
+    dialogConfig.width = '25%';
 
     dialogConfig.data= {
       person: person,

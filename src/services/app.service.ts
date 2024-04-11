@@ -21,7 +21,7 @@ private _otpAuth = false;
   isOtpLogin(){
 
     if (sessionStorage.getItem('otpMode')){
-      let otpMode = sessionStorage.getItem('otpMode') as unknown as boolean;
+      let otpMode = JSON.parse(sessionStorage.getItem('otpMode') as string) ;
 
       if (otpMode){
         return false

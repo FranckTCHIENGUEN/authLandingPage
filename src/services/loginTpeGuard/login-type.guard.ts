@@ -10,6 +10,6 @@ export const loginTypeGuard: CanActivateFn = (route, state) => {
   if (!response){
     router.navigate([''])
   }
-
+  console.log(appService.isOtpLogin())
   return appService.isOtpLogin();
 };

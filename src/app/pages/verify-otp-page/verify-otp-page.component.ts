@@ -143,6 +143,7 @@ export class VerifyOtpPageComponent {
         this.router.navigate(["home"]);
       }
       if (this.type == VerifType.ForgotPass){
+        this.authService.setConnectedUser(data);
         this.router.navigate(['new-pass'])
       }
 
@@ -163,7 +164,6 @@ export class VerifyOtpPageComponent {
     });
   }
   resendSubmit() {
-    if (this.verifyForm.valid){
 
       let resendOtp:ResendOtp ={
         email: this.email
@@ -194,6 +194,5 @@ export class VerifyOtpPageComponent {
           );
       }
 
-    }
   }
 }

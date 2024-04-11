@@ -38,7 +38,7 @@ export const routes: Routes = [
   },
   {
     path: 'forgot-pass',
-    canActivate:[welcomeGuard, loginTypeGuard],
+    canActivate:[welcomeGuard],
     component: ForgotPasswordPageComponent
   },
   {
